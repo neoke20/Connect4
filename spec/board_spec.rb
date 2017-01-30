@@ -53,7 +53,7 @@ describe Board do
 
   it "has empty spaces when created" do
     board = Board.new
-    expect(board.empty_spaces?).to eq(true)
+    expect(board.has_empty_spaces?).to eq(true)
   end
 
   it "has no empty spaces when all slots taken" do
@@ -64,7 +64,7 @@ describe Board do
       end
     end
 
-    expect(board.empty_spaces?).to eq(false)
+    expect(board.has_empty_spaces?).to eq(false)
   end
 
 end

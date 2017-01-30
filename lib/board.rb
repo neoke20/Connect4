@@ -36,12 +36,16 @@ class Board
     board_print
   end
 
-  def empty_spaces?
+  def has_empty_spaces?
     @board.each do |row|
       row.each do |space|
         return true if space.nil?
       end
     end
+    false
+  end
+
+  def winner?
     false
   end
 
