@@ -51,4 +51,20 @@ describe Board do
     expect(board.print).to eq(board_printout)
   end
 
+  it "has empty spaces when created" do
+    board = Board.new
+    expect(board.empty_spaces?).to eq(true)
+  end
+
+  it "has no empty spaces when all slots taken" do
+    board = Board.new
+    7.times do |index|
+      7.times do |col_index|
+        board.add_turn('o', index, col_index)
+      end
+    end
+
+    expect(board.empty_spaces?).to eq(false)
+  end
+
 end
