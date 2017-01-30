@@ -1,3 +1,5 @@
+require_relative 'board_space'
+
 class Board
 
   def initialize(num_rows_and_columns = 7)
@@ -5,7 +7,7 @@ class Board
     num_rows_and_columns.times do
       row = []
       num_rows_and_columns.times do
-        row << nil
+        row << BoardSpace.new
       end
       @board << row
     end
@@ -17,7 +19,7 @@ class Board
   end
 
   def add_turn(player, row_index, col_index)
-    @board[row_index][col_index] = player
+    @board[row_index][col_index].player = player
   end
 
   def print
@@ -25,11 +27,12 @@ class Board
     @board.each_with_index do |row, index|
       spots = []
       row.each do |space|
-        if space.nil?
-          spots << '_'
-        else
-          spots << space
-        end
+        spots << space.to_char
+        # if space.nil?
+        #   spots << '_'
+        # else
+        #   spots << space
+        # end
       end
       board_print << spots.join(' | ') + "\n"
     end
@@ -39,7 +42,7 @@ class Board
   def has_empty_spaces?
     @board.each do |row|
       row.each do |space|
-        return true if space.nil?
+        return true if !space.occupied?
       end
     end
     false

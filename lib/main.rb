@@ -1,8 +1,3 @@
-# - Game
-# - Board
-# - Players
-# - Spots
-
 require_relative 'board'
 require_relative 'player'
 
@@ -14,7 +9,8 @@ all_players = [o_player, x_player].shuffle
 turn_index = 0
 
 while board.has_empty_spaces? && !board.winner?
-  puts "\nIt is player #{all_players[turn_index].character}'s turn"
+  current_player = all_players[turn_index]
+  puts "\nIt is player #{current_player.character}'s turn"
 
   puts "Choose the row where you want to put your piece."
   row_index = gets.chomp.to_i
@@ -22,7 +18,7 @@ while board.has_empty_spaces? && !board.winner?
   puts "Choose the coloum where you want to put your piece."
   col_index = gets.chomp.to_i
 
-  board.add_turn(all_players[turn_index].character, row_index, col_index)
+  board.add_turn(current_player, row_index, col_index)
 
   puts board.print
 

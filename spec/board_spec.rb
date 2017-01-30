@@ -1,5 +1,4 @@
 require 'spec_helper'
-require_relative '../lib/board'
 
 describe Board do
   it "can be initialized with 7 rows and columns by default" do
@@ -39,7 +38,8 @@ describe Board do
 
   it "allows a player to choose a start point" do
     board = Board.new
-    board.add_turn('o', -1, 0)
+    player = Player.new('o')
+    board.add_turn(player, -1, 0)
     board_printout =
     "_ | _ | _ | _ | _ | _ | _\n" +
     "_ | _ | _ | _ | _ | _ | _\n" +
@@ -58,9 +58,10 @@ describe Board do
 
   it "has no empty spaces when all slots taken" do
     board = Board.new
+    player = Player.new('o')
     7.times do |index|
       7.times do |col_index|
-        board.add_turn('o', index, col_index)
+        board.add_turn(player, index, col_index)
       end
     end
 
