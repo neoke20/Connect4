@@ -12,13 +12,13 @@ while board.has_empty_spaces? && !board.winner?
   current_player = all_players[turn_index]
   puts "\nIt is player #{current_player.character}'s turn"
 
-  puts "Choose the row where you want to put your piece."
-  row_index = gets.chomp.to_i
+  # puts "Choose the row where you want to put your piece."
+  # row_index = gets.chomp.to_i
 
-  puts "Choose the coloum where you want to put your piece."
+  puts "Choose the column where you want to put your piece."
   col_index = gets.chomp.to_i
 
-  board.add_turn(current_player, row_index, col_index)
+  board.add_turn(current_player, col_index)
 
   puts board.print
 

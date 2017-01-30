@@ -39,7 +39,7 @@ describe Board do
   it "allows a player to choose a start point" do
     board = Board.new
     player = Player.new('o')
-    board.add_turn(player, -1, 0)
+    board.add_turn(player, 0)
     board_printout =
     "_ | _ | _ | _ | _ | _ | _\n" +
     "_ | _ | _ | _ | _ | _ | _\n" +
@@ -61,7 +61,7 @@ describe Board do
     player = Player.new('o')
     7.times do |index|
       7.times do |col_index|
-        board.add_turn(player, index, col_index)
+        board.add_turn(player, col_index)
       end
     end
 
