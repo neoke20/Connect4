@@ -2,6 +2,8 @@ require_relative "../spec/spec_helper"
 
 class Board
 
+  attr_accessor :board, :player, :row_index, :col_index
+
   def initialize(num_rows_and_columns = 7)
     @board = []
     num_rows_and_columns.times do
@@ -11,6 +13,9 @@ class Board
       end
       @board << row
     end
+    @player = player
+    @row_index = row_index
+    @col_index = col_index
 
   end
 
@@ -52,25 +57,6 @@ class Board
     end
   end
 
-  # def add_turn(player, col_index)
-  #   row_index = -1
-  #     if @board[-1][col_index].occupied?
-  #       while @board[row_index][col_index].occupied?
-  #         binding.pry
-  #         @board[row_index].index -= 1
-  #         if  @board[0][col_index].occupied?
-  #           puts "error"
-  #           puts "Choose the column where you want to put your piece."
-  #           col_index = gets.chomp.to_i
-  #         elsif !@board[row_index][col_index].occupied?
-  #           @empty_row = @board[row_index]
-  #           @board[row_index][col_index].player = player
-  #         end
-  #       end
-  #     else
-  #       @board[row_index][col_index].player = player
-  #     end
-  # end
 
   def print
     board_print = ''
@@ -90,11 +76,30 @@ class Board
         return true if !space.occupied?
       end
     end
-    false
+    return false
   end
 
   def winner?
-    false
+    horizontal_win? || vertical_win?
+  end
+
+  def horizontal_win?
+    win_condition = []
+    @board.each do |row|
+      row.each do |space|
+        if space.player.nil?
+          win_condition << ""
+        else
+          win_condition << space.player.character
+        end
+      end
+    end
+    win_condition.join("").include?("xxxx") || win_condition.join("").include?("oooo")
+
+  end
+
+  def vertical_win?
+
   end
 
 end
